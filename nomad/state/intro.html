@@ -1,0 +1,54 @@
+<!--
+1. state 
+  - 리액트의 데이터가 저장되는 곳
+  - 따라서 이하 코드에서의 데이터인 counter를 state로 표현 가능?  
+2. 코드 재사용성 
+  - basic에서 function 또는 화살표 함수로 구현한 내용을 랜더링할 때 여러번 적어주면 (아래처럼) 코드 재사용 가능 
+  - function Container() {
+        return (
+          <div>
+          <Title/> 
+          <Button/>
+          <Button/>
+          <Button/>
+          <Button/>
+          <Button/>
+        </div>
+        )
+      }; 
+-->
+
+<!doctype html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+
+  <!--react, reactDOM import-->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>  
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>  
+  <!--babel import -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root")
+    let counter = 0;
+    function countUp() {
+      counter = counter + 1;
+      render();
+    }
+    // rerendering 코드 작성
+    const render = () => (  //rerendering 위해 render 함수 별도 생성
+      ReactDOM.render(<Container/>, root)
+    );
+
+    const Container = () => ( // {counter}로 리액트는 클릭할 때마다 바뀌는 내용인 counter만 리랜더링
+      <div>
+        <h3>Total Clicks: {counter}</h3>  
+        <button onClick={countUp}> Click me </button>
+      </div>
+    );
+    render();
+
+  
+  </script>
+</html>

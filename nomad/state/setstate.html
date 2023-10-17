@@ -1,0 +1,41 @@
+
+<!doctype html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+
+  <!--react, reactDOM import-->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>  
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>  
+  <!--babel import -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const root = document.getElementById("root")
+
+    /* 
+    state를 이용하여 rerendering 코드 짜기 - 첫 번째
+      - React.useState(0) : 데이터 저장하는 객체 생성 -> 결과 : (2) [0, ƒ] = [초기값, 함수: App이 되어야함]
+      - 배열 객체에 접근할 때,
+        data =  React.useState(0);
+        const counter = data[0]
+        const modifier = data[1]   
+        이런식으로 여러줄 작성하지 말고,
+        const [counter, modifier] = React.useState(0); 로 한 번에 변수 선언 및 값 할당하기   
+    */
+
+    function App() {
+      const [counter, modifier] = React.useState(0);
+      // console.log(React.useState(0))
+      return (
+        <div>
+          <h3>Total Clicks: {counter}</h3>  
+          <button> Click me </button>
+        </div>
+      );
+    }
+    ReactDOM.render(<App/>, root)
+  
+  </script>
+</html>

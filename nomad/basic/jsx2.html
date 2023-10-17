@@ -1,0 +1,65 @@
+
+<!doctype html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+
+  <!--react, reactDOM import-->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>  
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>  
+  <!--babel import -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+      const root = document.getElementById("root"); 
+
+      /*
+      - Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: object. 오류 발생
+      - 원인 : 아래 코드는 화살표 함수 없이 그냥 괄호 열어서 객체로 인식됨 
+      - 해결 방법 : 그러나 리액트 element는 string, class, function 중에 하나의 형태여야하므로, function 형태 사용하여 컴포넌트 함수로 바꿈
+      - function 형태 : 1) Title 처럼 function 글자 사용 2) Button 처럼 화살표 함수 사용하는 방법이 있음 
+      */
+      
+      /*
+      const Title = (
+          <h3 id="title" 
+          onMouseEnter={() => console.log("mouse enter") }>
+          Hello I'm a title </h3>
+          );
+      */ 
+
+      function Title() {
+        return (
+          <h3 id="title" onMouseEnter={() => console.log("mouse enter")}>
+            Hello I'm a title
+          </h3>
+        );
+      }
+
+      const Button = () => (
+        <button
+          style={{ backgroundColor: "tomato" }}
+          onClick={() => console.log("im clicked")}
+        >Click me</button>
+      );
+
+      /*const container = React.createElement("div", null, [Title, Button]);*/
+      // 위 코드를 아래처럼 바꿀 수 있음
+      /*
+        - 아래는 2개이상의 컴포넌트들을 한 번에 랜더링하는 형태 
+        - 컴포넌트들은 무조건 대문자로 써야함 
+        - 소문자로 썼다 : html 요소일뿐
+      */ 
+     
+      function Container() {
+        return (
+          <div>
+          <Title/> 
+          <Button/>
+        </div>
+        )
+      };    
+      ReactDOM.render(<Container/>, root); 
+    </script>
+</html>

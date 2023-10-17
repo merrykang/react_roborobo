@@ -1,0 +1,35 @@
+
+<!doctype html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+
+  <!--react, reactDOM import-->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>  
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>  
+  <!--babel import -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const root = document.getElementById("root")
+
+    /* 
+    state를 이용하여 rerendering 코드 짜기 - 두 번째
+      - modifier가 필요한 이유 (소스 코드 상에서 counter=120 이런식으로 설정하는 것이 아니라)   
+    */
+
+    function App() {
+      const [counter, modifier] = React.useState(0);
+      // console.log(React.useState(0))
+      return (
+        <div>
+          <h3>Total Clicks: {counter}</h3>  
+          <button> Click me </button>
+        </div>
+      );
+    }
+    ReactDOM.render(<App/>, root)
+  
+  </script>
+</html>
